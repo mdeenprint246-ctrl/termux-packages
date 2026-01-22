@@ -3,6 +3,7 @@ TERMUX_PKG_DESCRIPTION="An extremely fast Python linter, written in Rust"
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION="0.15.2"
+TERMUX_PKG_REVISION=1
 TERMUX_PKG_SRCURL="https://github.com/charliermarsh/ruff/archive/refs/tags/$TERMUX_PKG_VERSION.tar.gz"
 TERMUX_PKG_SHA256=0934e0298855317eb430244cff63ff249a949caf499761d96ba9f2d37715b663
 TERMUX_PKG_AUTO_UPDATE=true
@@ -29,7 +30,10 @@ termux_step_make() {
 	# --skip-auditwheel workaround for Maturin error
 	# 'Cannot repair wheel, because required library libdl.so could not be located.'
 	# found here in Termux-specific upstream discussion: https://github.com/PyO3/pyo3/issues/2324
-	maturin build --locked --skip-auditwheel --release --all-features --target "$CARGO_TARGET_NAME" --strip
+	export CARGO_BUILD_TARGET="${CARGO_TARGET_NAME}"
+	export PYO3_CROSS_LIB_DIR="${TERMUX_PREFIX}/lib"
+	export ANDROID_API_LEVEL="${TERMUX_PKG_API_LEVEL}"
+	maturin build --locked --skip-auditwheel --release --all-features --strip
 }
 
 termux_step_make_install() {
