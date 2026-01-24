@@ -3,6 +3,7 @@ TERMUX_PKG_DESCRIPTION="A community-maintained Python framework for creating mat
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="Nguyen Khanh @nguynkhn"
 TERMUX_PKG_VERSION="0.20.0"
+TERMUX_PKG_REVISION=1
 TERMUX_PKG_SRCURL="https://github.com/ManimCommunity/manim/archive/refs/tags/v$TERMUX_PKG_VERSION.tar.gz"
 TERMUX_PKG_SHA256=be4291428da8eade5b7443159e20f5fbfa5511f1ebc32936c101559ad170d283
 TERMUX_PKG_DEPENDS="cmake, ffmpeg, libcairo, pango, xorgproto, python-numpy, python-pillow, python-pip, pycairo, python-scipy, python-skia-pathops"
